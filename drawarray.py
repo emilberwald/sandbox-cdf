@@ -104,8 +104,8 @@ class myGUI:
 
     def savearray(self):
         mins, maxs = self.getlimits()
-        numpy.savetxt(pathlib.Path.cwd() / pathlib.Path("data") / (self.args.min), mins)
-        numpy.savetxt(pathlib.Path.cwd() / pathlib.Path("data") / (self.args.max), maxs)
+        numpy.savetxt(pathlib.Path.cwd() / pathlib.Path("data") / (self.args.max), self.args.height - 1 - mins)
+        numpy.savetxt(pathlib.Path.cwd() / pathlib.Path("data") / (self.args.min), self.args.height - 1 - maxs)
 
     def save(self):
         if (
