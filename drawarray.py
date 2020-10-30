@@ -33,6 +33,8 @@ class myGUI:
         self.filemenu.add_command(label="Open Max...", command=self.openmax)
         self.filemenu.add_command(label="Save As...", command=self.save)
         self.filemenu.add_separator()
+        self.filemenu.add_command(label="Add Bottom", command=self.bottom)
+        self.filemenu.add_separator()
         self.filemenu.add_command(label="Exit", command=root.destroy)
 
         self.image = PIL.Image.new("RGB", (args.width, args.height), (255, 255, 255))
@@ -41,6 +43,10 @@ class myGUI:
         self.canvas.bind("<ButtonRelease-1>", self.pen_up)
         self.latest = None
         self.args = args
+
+    def bottom(self):
+        self.draw.line([0, self.args.height - 1, self.args.width - 1, self.args.height - 1], fill="black", width=1)
+        self.canvas.create_line(0, self.args.height - 1, self.args.width - 1, self.args.height - 1, fill="black", width=1)
 
     def openmin(self):
         if (
