@@ -4,21 +4,17 @@ Format[Q0] := Subscript[Q, 0]
 Format[Q1] := Subscript[Q, 1]
 Format[Q2] := Subscript[Q, 2]
 Format[Q3] := Subscript[Q, 3]
-Format[Q3] := Subscript[Q, 4]
-Format[Q3] := Subscript[Q, 5]
 
-F[Q0_, Q1_, Q2_, Q3_, Q4_, Q5_] :=
+F[Q0_, Q1_, Q2_, Q3_] :=
     {
-        Q0 * Q2 * (Q1 - Q0)^(-1),
+        0,
         Q1 * Q2 * (Q1 - Q0)^(-1),
-        Q2 * Q2 * (Q1 - Q0)^(-1) + 1/2 * Q3 (Q1 - Q0)^2,
-        0,
-        0,
+        Q2 * Q2 * (Q1 - Q0)^(-1) + 1/2 * Q3 (Q1 - Q0)^2 + Q3 * (Q1 - Q0) * Q0,
         0
     }
 
-dF := D[F[Q0, Q1, Q2, Q3, Q4, Q5], { { Q0, Q1, Q2, Q3, Q4, Q5 } }]
+dF := D[F[Q0, Q1, Q2, Q3], { { Q0, Q1, Q2, Q3 } }]
 
 TeXForm[Simplify[dF]]
 
-TeXForm[Eigenvectors[dF]]
+TeXForm[Eigensystem[Simplify[dF]]]
